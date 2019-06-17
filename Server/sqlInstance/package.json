@@ -1,0 +1,14 @@
+{
+  "name": "sql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "config.js",
+  "scripts": {
+    "test": "mysql"
+  },
+  "author": "rohit",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.17.1"
+  }
+}
