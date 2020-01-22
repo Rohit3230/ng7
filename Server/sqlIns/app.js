@@ -76,16 +76,12 @@ runQuery = function runQuery(query, paramArr, callback) {
     if (typeof paramArr !== 'object')
         throw new Error("ParamArr not passed");
     console.log("runQuery Query ====> " + query);
-    console.log("Params ====> " + JSON.stringify(paramArr));
-
-    // var randomValue = "QueryTime_"+(Math.round((new Date()).getTime() / 1000));
-    // console.time(randomValue);
+    console.log("Params ====> " + JSON.stringify(paramArr)); 
 
     let stTime = new Date().getTime();
 
-    dbPool.getConnection(function (err, conn) {
-        // console.timeEnd(randomValue);
-        if (err) // Error opening connection
+    dbPool.getConnection(function (err, conn) { 
+        if (err) 
             return callback(err);
 
         //console.log("Running query");
@@ -165,21 +161,6 @@ mainDatabaseAsyncCallback = function mainDatabaseAsyncCallback(err, myConn, call
         });
     }
 };
-
-// startTrans(function (err, result) {
-//     // console.log(err,'*******', result);
-//     runQuery('SELECT * FROM `admin`', [], function (err, result) {
-//         console.log(err, '********QUERY*********', result);
-//     });
-// });
-
-// con.connect(function(err) {
-//   if (err){
-//     console.log('err*****',err);
-//   }else{
-//     console.log("Connected!");
-//   }
-// });
 
 
 app.use('/api', router);
