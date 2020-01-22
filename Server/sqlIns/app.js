@@ -26,7 +26,12 @@ var allowCrossDomain = function(req, res, next) {
 app.use(bodyParser.urlencoded({limit: '5000mb', extended: true }));
 app.use(bodyParser.json({limit: '5000mb'}));;
 app.use(allowCrossDomain);
+app.use(function(req, res, next) {
+    console.log('Something is happening.');
+    next();
+});
 addRoutes('api',app);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     console.log("404 error handler called");
@@ -34,6 +39,8 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+
 
 function addRoutes(folderName, app) { 
     fs.readdirSync(folderName).forEach(function(file) {
