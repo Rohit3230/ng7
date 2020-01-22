@@ -1,0 +1,21 @@
+{
+  "name": "sqlins",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "~1.0.1",
+    "cors": "^2.8.5",
+    "ejs": "^2.3.4",
+    "express": "~4.0.0",
+    "mongodb": "^2.2.33",
+    "mongoose": "~3.6.13",
+    "mysql": "^2.18.0",
+    "nodemon": "^1.17.4"
+  }
+}
