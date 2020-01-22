@@ -1,8 +1,9 @@
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
-var mysql = require('mysql');
-var router = express.Router();
+var path = require('path');
+var mysql = require('mysql'); 
+var fs = require('fs');
 var startTrans;
 
 var port = process.env.PORT || 3306;   
@@ -15,26 +16,46 @@ var dbPool = mysql.createPool({
     port : port
 });
 
-// middleware to use for all requests
-router.use(function(req, res, next) {
-    // do logging
-    console.log('Something is happening.');
-    next(); // make sure we go to the next routes and don't stop here
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'origin, content-type, accept, Token, Branch, Service, DocumentHash,categoryhash,servicehash,maxAge,offlinetoken');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    next();
+}
+
+app.use(bodyParser.urlencoded({limit: '5000mb', extended: true }));
+app.use(bodyParser.json({limit: '5000mb'}));;
+app.use(allowCrossDomain);
+addRoutes('api',app);
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    console.log("404 error handler called");
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
-    console.log('INIT GET API*****');
-    runQuery('SELECT * FROM `admin`', [], function (err, result) {
-        console.log(err, '********QUERY*********', result);
-        if(
-            err
-        ){
-            res.json(err);
-        }else{
-            res.json({ status: 'OK', data : result });
+
+function addRoutes(folderName, app) { 
+    fs.readdirSync(folderName).forEach(function(file) {
+
+        var fullName = path.join(folderName, file);
+        var stat = fs.lstatSync(fullName);
+        var name = '';
+
+        if (stat.isDirectory())
+        {
+            addRoutes(fullName, app);
         }
-    });  
-});
+        else if ( fullName.substr(fullName.lastIndexOf('.') + 1) === 'js')  //.toLowerCase()
+        {
+            name = '/'+fullName.substr(0, fullName.lastIndexOf('.'))+'/';
+            app.use(name, require('./'+fullName));
+            //console.log(name+' :: '+fullName);
+        }
+    });
+}
+
+
 
 insertAsync = function (conn, query, params) {
 
@@ -163,9 +184,12 @@ mainDatabaseAsyncCallback = function mainDatabaseAsyncCallback(err, myConn, call
 };
 
 
-app.use('/api', router);
+// app.use('/api', router);
 
 // START THE SERVER
 // =============================================================================
 app.listen(port);
 console.log('Magic happens on port ' + port);
+
+
+module.exports = app;
