@@ -8,7 +8,9 @@
 /bazel-out
 
 /Server/sqlInstance/node_modules
+/Server/sqlInstance/node_modules/
 /Server/node_modules
+/Server/node_modules/
 
 # dependencies
 /node_modules
