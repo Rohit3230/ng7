@@ -9,6 +9,8 @@
 
 /Server/sqlInstance/node_modules
 /Server/sqlInstance/node_modules/
+/Server/mongoIns/node_modules
+/Server/mongoIns/node_modules/
 /Server/node_modules
 /Server/node_modules/
 
