@@ -7,8 +7,8 @@
 # Only exists if Bazel was run
 /bazel-out
 
-/Server/sqlInstance/node_modules
-/Server/sqlInstance/node_modules/
+/Server/sqlIns/node_modules
+/Server/sqlIns/node_modules/
 /Server/mongoIns/node_modules
 /Server/mongoIns/node_modules/
 /Server/node_modules
