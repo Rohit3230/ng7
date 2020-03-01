@@ -200,3 +200,9 @@ console.log('Magic happens on port ' + port);
 
 
 module.exports = app;
+
+
+
+
+
+// WOrking Url:-     http://localhost:3306/api/v0/admin

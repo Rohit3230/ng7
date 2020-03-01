@@ -14,14 +14,16 @@
  * Learn more in https://angular.io/docs/ts/latest/guide/browser-support.html
  */
 
+/***************************************************************************************************
+ * BROWSER POLYFILLS
+ */
+
  /***************************************************************************************************
  * Zone JS is required by Angular itself.
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
-/***************************************************************************************************
- * BROWSER POLYFILLS
- */
+
 
 /** IE9, IE10 and IE11 requires all of the following polyfills. **/
 import 'core-js/es/symbol';
@@ -49,17 +51,11 @@ import 'core-js/es/set';
 /** Evergreen browsers require these. **/
 import 'core-js/es/reflect';
 // import 'core-js/es/reflect';
-
-
-import '@angular/localize/init';
+import '@angular/localize/init'
 
 
 /** ALL Firefox browsers require the following to support `@angular/animation`. **/
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
-
-
-
-
 
 
 

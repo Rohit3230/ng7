@@ -7,9 +7,7 @@
 
 # dependencies
 /node_modules
-/adminClient/node_modules
-/client/node_modules
-/clientApp/node_modules
+/adminApp/node_modules
 /userApp/node_modules
 /Server/node_modules
 /Server/mongoIns/node_modules
